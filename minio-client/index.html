@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="display: flex; flex-direction: column; row-gap: 10px">
+    <div
+      style="
+        border: 1px solid rgb(212, 230, 176);
+        padding: 20px;
+        border-radius: 10px;
+      "
+    >
+      <h3>Upload file using pre signed url</h3>
+      <input type="file" id="selector" multiple />
+      <button onclick="upload()">Upload</button>
+      <div style="margin-top: 5px" id="status">No uploads</div>
+    </div>
+
+    <div
+      style="
+        border: 1px solid rgb(212, 230, 176);
+        padding: 20px;
+        border-radius: 10px;
+      "
+    >
+      <h3>
+        Upload file without using pre signed url(use multer for upload file to
+        backend)
+      </h3>
+      <form
+        action="http://localhost:8080/upload-file-to-minio"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input type="file" name="image" id="selector" multiple />
+        <input type="submit" value="submit" />
+      </form>
+    </div>
+
+    <div
+      style="
+        border: 1px solid rgb(212, 230, 176);
+        padding: 20px;
+        border-radius: 10px;
+      "
+    >
+      <h3>Delete file from minio</h3>
+      <form id="delete-form" onsubmit="deleteObject(); return false;">
+        <label for="filename">Bucket Name:</label>
+        <input type="text" id="bucketname" name="bucketname" required />
+        <label for="filename">File Name:</label>
+        <input type="text" id="filename" name="filename" required />
+        <button type="submit">Delete File</button>
+      </form>
+      <div style="margin-top: 5px" id="delete-status"></div>
+    </div>
+  </body>
+
+  <script src="script.js"></script>
+</html>
